@@ -26,20 +26,23 @@ def recorrer_directorio(ruta_directorio):
     Recursively traverse the directory and its subdirectories, processing files with certain extensions.
     :param ruta_directorio: The path to the root directory
     """
-    contras_file_path = os.path.join(ruta_destino, "Collection_1.txt")
+    contras_file_path = os.path.join(ruta_destino, "contras.txt")
     with open(contras_file_path, "a+", encoding="latin1") as contras_file:
         for root, dirs, files in os.walk(ruta_directorio):
             try:
                 for file in files:
                     if not file.endswith(tuple(extensiones_excluidas)):
                         file_path = os.path.join(root, file)
-                        with open(file_path, "r", encoding="latin1") as archivo:
-                            lines = archivo.readlines()
-                            for line in lines:
-                                hashed_line = get_hash(line.decode())
+                        with open(file_path, "r", encoding="latin1") as archivo:                            
+                            for line in archivo:                                
+                                hashed_line = get_hash(line)
                                 if hashed_line not in hashes:
                                     hashes.append(hashed_line)
-                                    contras_file.write(f"{hashed_line}\n")
-                                    print(hashed_line)  #
+                                    contras_file.write(f"{line}")
+                                    print(line)  #
             except Exception as e:
                 print(f"Error processing file {file_path}: {e}")
+                pass
+if __name__ == "__main__":
+    recorrer_directorio(ruta_origen)
+    print("Proceso terminado")
