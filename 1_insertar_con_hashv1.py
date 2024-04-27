@@ -8,8 +8,9 @@ Se comprueba si el hash ya existe en el archivo txt.
 Con ello evitamos repetir todo el proceso en el caso de que el volumen de archivos de entrada
 sea grande y se tenga que comenzar todo el proceso desde cero.
 Si no existe, se inserta en el archivo txt.
-El archivo de entrada es un directorio.
+Los datos de entrada se encuentran en  un directorio.
 El archivo de salida es un archivo txt.
+Los hash se leen desde y escriben en un archivo txt.
 '''
 
 import os
