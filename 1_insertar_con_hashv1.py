@@ -20,7 +20,7 @@ def insertar_en_archivo_hash(hash):
 def leer_archivo_hash():
     """
     Lee los hash desde archivo y los añade a la lista de los ya agregados.
-       
+
     """
     with open(os.path.join(ruta_destino, "hashes.txt"), "r") as archivo:
         for line in archivo:
@@ -57,7 +57,9 @@ def recorrer_directorio(ruta_directorio):
                                     hashes.append(hashed_line)
                                     insertar_en_archivo_hash(hashed_line)
                                     contras_file.write(f"{line}")
-                                    print(line)  #
+                                    print(line)
+                                else:
+                                    print(f"Hash {hashed_line} ya existe")
             except Exception as e:
                 print(f"Error processing file {file_path}: {e}")
                 pass
