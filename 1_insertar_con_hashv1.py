@@ -60,6 +60,7 @@ def recorrer_directorio(ruta_directorio):
                                     print(line)
                                 else:
                                     print(f"Hash {hashed_line} ya existe")
+                    os.remove(file_path)           
             except Exception as e:
                 print(f"Error processing file {file_path}: {e}")
                 pass
