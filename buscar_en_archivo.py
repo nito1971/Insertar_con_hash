@@ -1,14 +1,18 @@
 import os
 origen_datos = "/mnt/10.0.1.20/datos/Contras/procesado/contras.txt"
 
+lista_cadenas_encontradas = []
 def encontrar_texto(archivo, texto):
-    lista_cadenas_encontradas = []
+    
     with open(archivo, "r", encoding="latin1") as f:
         for linea in f:
             if texto in linea:
                 lista_cadenas_encontradas.append(linea)
             else:
                 continue
+    with open("resultado.txt", "a+", encoding="latin1") as f:
+        for linea in lista_cadenas_encontradas:
+            f.write(linea)
     return lista_cadenas_encontradas
         
     
