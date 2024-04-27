@@ -2,8 +2,8 @@ import os
 import hashlib
 
 ## Define the origin directory and the destination directory for writing output files.
-ruta_origen = "/mnt/local/datos/Contras/Collection #2-#5 & Antipublic/Collection 1"
-ruta_destino = "/mnt/local/datos/Contras/TXT"
+ruta_origen = "/mnt/10.0.1.20/datos/Contras/Sin_procesar"
+ruta_destino = "/mnt/10.0.1.20/datos/Contras/procesado"
 
 ## Define a list of file extensions to exclude from processing
 extensiones_excluidas = ["sql", "xlxs", "docx", "doc", "html"]
@@ -40,4 +40,6 @@ def recorrer_directorio(ruta_directorio):
                                 if hashed_line not in hashes:
                                     hashes.append(hashed_line)
                                     contras_file.write(f"{hashed_line}\n")
-                                    print(hashed_line  #
+                                    print(hashed_line)  #
+            except Exception as e:
+                print(f"Error processing file {file_path}: {e}")
