@@ -25,7 +25,7 @@ def menu():
             if opcion == "1":
                 cadena = input("Introduce la cadena a buscar: ")
                 encontrar_texto(origen_datos,cadena)
-                for linea in encontrar_texto("contras.txt", cadena):
+                for linea in encontrar_texto(origen_datos, cadena):
                     print(linea)
             elif opcion == "2":
                 print("\nSaliendo...")
