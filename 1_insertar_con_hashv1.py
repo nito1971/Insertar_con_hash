@@ -39,7 +39,7 @@ def leer_archivo_contras():
     """
     with open(os.path.join(ruta_destino, "contras.txt"), "r") as archivo:
         for line in archivo:
-            contras_ya_vistas.append(line.strip())
+            contras_ya_vistas.append(line)
 
 def get_hash(input_string):
     """
