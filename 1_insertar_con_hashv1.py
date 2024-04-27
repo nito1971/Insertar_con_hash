@@ -1,3 +1,16 @@
+'''
+Script que recorre distintos tipos de ficheros y
+extrae su contenido y lo inserta en un archivo evitando duplicados.
+Para ello, utiliza un hash para cada linea del fichero y se guarda en un archivo txt.
+Al inicio se lee el archivo txt para obtener los hash ya insertados.
+A continuación se recorre el directorio y se extrae su contenido.
+Se comprueba si el hash ya existe en el archivo txt.
+Si no existe, se inserta en el archivo txt.
+El archivo de entrada es un directorio.
+El archivo de salida es un archivo txt.
+El script se ejecuta en el servidor de datos.
+'''
+
 import os
 import hashlib
 
