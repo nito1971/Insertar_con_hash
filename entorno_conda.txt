@@ -1,0 +1,8 @@
+************************************************
+conda create --name insertar_con_has python=3.12
+conda activate insertar_con_has
+************************************************
+Librerías empleadas:
+os
+hashlib
+*************************************************
