@@ -22,7 +22,7 @@ ruta_destino = "/mnt/10.0.1.20/datos/Contras/procesado"
 
 ## Define a list of file extensions to exclude from processing
 extensiones_excluidas = ["sql", "xlxs", "docx", "doc", "html"]
-hashes = []  # Initialize an empty list for storing hashes
+contras_ya_vistas  = []  # Initialize an empty list for storing hashes
 
 def insertar_en_archivo_hash(hash):
     """
@@ -32,14 +32,14 @@ def insertar_en_archivo_hash(hash):
     with open(os.path.join(ruta_destino, "hashes.txt"), "a+") as archivo:
         archivo.write(f"{hash}\n")
 
-def leer_archivo_hash():
+def leer_archivo_contras():
     """
     Lee los hash desde archivo y los añade a la lista de los ya agregados.
 
     """
-    with open(os.path.join(ruta_destino, "hashes.txt"), "r") as archivo:
+    with open(os.path.join(ruta_destino, "contras.txt"), "r") as archivo:
         for line in archivo:
-            hashes.append(line.strip())
+            contras_ya_vistas.append(line.strip())
 
 def get_hash(input_string):
     """
@@ -67,19 +67,19 @@ def recorrer_directorio(ruta_directorio):
                         file_path = os.path.join(root, file)
                         with open(file_path, "r", encoding="latin1") as archivo:                            
                             for line in archivo:                                
-                                hashed_line = get_hash(line)
-                                if hashed_line not in hashes:
-                                    hashes.append(hashed_line)
-                                    insertar_en_archivo_hash(hashed_line)
-                                    contras_file.write(f"{line}")
+                                if line not in contras_ya_vistas:
+                                    contras_ya_vistas.append(line)                                
+                                    contras_file.write(line)
                                     print(line)
                                 else:
-                                    print(f"Hash {hashed_line} ya existe")
+                                    print(f"Hash {line} ya existe")
                     os.remove(file_path)           
             except Exception as e:
                 print(f"Error processing file {file_path}: {e}")
                 pass
 if __name__ == "__main__":
-    leer_archivo_hash()
+    if not os.path.exists(os.path.join(ruta_destino, "contras.txt")):
+        open(os.path.join(ruta_destino, "contras.txt"), "w").close()
+    leer_archivo_contras()
     recorrer_directorio(ruta_origen)
     print("Proceso terminado")
