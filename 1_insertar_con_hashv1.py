@@ -8,7 +8,6 @@ Se comprueba si el hash ya existe en el archivo txt.
 Si no existe, se inserta en el archivo txt.
 El archivo de entrada es un directorio.
 El archivo de salida es un archivo txt.
-El script se ejecuta en el servidor de datos.
 '''
 
 import os
