@@ -9,6 +9,23 @@ ruta_destino = "/mnt/10.0.1.20/datos/Contras/procesado"
 extensiones_excluidas = ["sql", "xlxs", "docx", "doc", "html"]
 hashes = []  # Initialize an empty list for storing hashes
 
+def insertar_en_archivo_hash(hash):
+    """
+    Write the hash to a file.
+    :param hash: The hash to be written
+    """
+    with open(os.join(ruta_destino, "hashes.txt"), "a") as archivo:
+        archivo.write(f"{hash}\n")
+
+def leer_archivo_hash():
+    """
+    Write the hash to a file.
+    :param hash: The hash to be written
+    """
+    with open(os.join(ruta_destino, "hashes.txt"), "a") as archivo:
+        for line in archivo:
+            hashes.append(line.strip())
+
 def get_hash(input_string):
     """
     Compute the SHA-384 hash of the input string.
