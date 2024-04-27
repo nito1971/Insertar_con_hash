@@ -12,7 +12,7 @@ ruta_origen = "/mnt/10.0.1.20/datos/Contras/Sin_procesar"
 ruta_destino = "/mnt/10.0.1.20/datos/Contras/procesado"
 
 ## Define a list of file extensions to exclude from processing
-extensiones_excluidas = ["sql", "xlxs", "docx", "doc", "html"]
+extensiones_excluidas = ["sql", "xlxs", "docx", "doc", "html", "rar"]
 contras_ya_vistas  = []  # Initialize an empty list for storing hashes
 
 def insertar_en_archivo_hash(hash):
