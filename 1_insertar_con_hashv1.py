@@ -14,15 +14,15 @@ def insertar_en_archivo_hash(hash):
     Write the hash to a file.
     :param hash: The hash to be written
     """
-    with open(os.join(ruta_destino, "hashes.txt"), "a") as archivo:
+    with open(os.path.join(ruta_destino, "hashes.txt"), "a+") as archivo:
         archivo.write(f"{hash}\n")
 
 def leer_archivo_hash():
     """
-    Write the hash to a file.
-    :param hash: The hash to be written
+    Lee los hash desde archivo y los añade a la lista de los ya agregados.
+       
     """
-    with open(os.join(ruta_destino, "hashes.txt"), "a") as archivo:
+    with open(os.path.join(ruta_destino, "hashes.txt"), "r") as archivo:
         for line in archivo:
             hashes.append(line.strip())
 
@@ -55,11 +55,13 @@ def recorrer_directorio(ruta_directorio):
                                 hashed_line = get_hash(line)
                                 if hashed_line not in hashes:
                                     hashes.append(hashed_line)
+                                    insertar_en_archivo_hash(hashed_line)
                                     contras_file.write(f"{line}")
                                     print(line)  #
             except Exception as e:
                 print(f"Error processing file {file_path}: {e}")
                 pass
 if __name__ == "__main__":
+    leer_archivo_hash()
     recorrer_directorio(ruta_origen)
     print("Proceso terminado")
