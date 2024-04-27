@@ -20,8 +20,7 @@ def encontrar_texto(archivo, texto):
 
 def menu():
         while True:
-            if os.path.exists("resultado.txt"):
-                os.remove("resultado.txt")
+            
             print("\nMenu:")
             print("1. Buscar cadena")
             print("2. Salir")
@@ -29,6 +28,8 @@ def menu():
             opcion = input("Elija una opción: ")
 
             if opcion == "1":
+                if os.path.exists("resultado.txt"):
+                   os.remove("resultado.txt")
                 cadena = input("Introduce la cadena a buscar: ")
                 encontrar_texto(origen_datos,cadena)
                 for linea in encontrar_texto(origen_datos, cadena):
