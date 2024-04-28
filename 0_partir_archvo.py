@@ -51,7 +51,7 @@ for archivo in archivos_final:
                     contador_linas += 1
                 elif contador_linas == limite_lineas:
                     nombre_archivo += 1
-                    with open(f"{directorio_donde_guardar}/+{nombre_archivo}{generar_randon()}{generar_randon()}{generar_randon()}{generar_randon()}.txt", "w") as f2:
+                    with open(f"{directorio_donde_guardar}/+{nombre_archivo}{generar_randon()}{generar_randon()}{generar_randon()}{generar_randon()}{generar_randon()}{generar_randon()}.txt", "w") as f2:
                         f2.writelines(lineas)
                         lineas = []
                         contador_linas = 0
