@@ -59,7 +59,7 @@ def recorrer_directorio(ruta_directorio):
                         with open(file_path, "r", encoding="latin1") as archivo:                            
                             for line in archivo:                                                               
                                 contras_file.write(line)                               
-                    os.remove(file_path)           
+                        os.remove(file_path)           
             except Exception as e:
                 print(f"Error processing file {file_path}: {e}")
                 pass
