@@ -15,14 +15,6 @@ ruta_destino = "/mnt/10.0.1.20/datos/Contras/TXT"
 extensiones_excluidas = ["sql", "xlxs", "docx", "doc", "html", "rar"]
 contras_ya_vistas  = []  # Initialize an empty list for storing hashes
 
-def insertar_en_archivo_hash(hash):
-    """
-    Write the hash to a file.
-    :param hash: The hash to be written
-    """
-    with open(os.path.join(ruta_destino, "hashes.txt"), "a+") as archivo:
-        archivo.write(f"{hash}\n")
-
 def leer_archivo_contras():
     """
     Lee los hash desde archivo y los añade a la lista de los ya agregados.
@@ -31,18 +23,6 @@ def leer_archivo_contras():
     with open(os.path.join(ruta_destino, "contras.txt"), "r") as archivo:
         for line in archivo:
             contras_ya_vistas.append(line)
-
-def get_hash(input_string):
-    """
-    Compute the SHA-384 hash of the input string.
-    If there is an error during the computation, return None.
-    :param input_string: The string to be hashed
-    :return: The computed hash (as a hexadecimal string) or None if an error occurs
-    """
-    try:
-        return hashlib.sha384(input_string.encode()).hexdigest()
-    except:
-        return None
 
 def recorrer_directorio(ruta_directorio):
     """
@@ -66,6 +46,7 @@ def recorrer_directorio(ruta_directorio):
             except Exception as e:
                 print(f"Error processing file {file_path}: {e}")
                 pass
+            
 if __name__ == "__main__":
     if not os.path.exists(os.path.join(ruta_destino, "contras.txt")):
         open(os.path.join(ruta_destino, "contras.txt"), "w").close()
