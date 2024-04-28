@@ -8,8 +8,8 @@ import os
 import hashlib
 
 ## Define the origin directory and the destination directory for writing output files.
-ruta_origen = "/mnt/10.0.1.20/datos/Contras/procesado"
-ruta_destino = "/mnt/10.0.1.20/datos/Contras/TXT"
+ruta_origen = "/mnt/10.0.1.20/datos/Contras/TXT"
+ruta_destino = "/mnt/10.0.1.20/datos/Contras/terminado"
 
 ## Define a list of file extensions to exclude from processing
 extensiones_excluidas = ["sql", "xlxs", "docx", "doc", "html", "rar"]
@@ -46,7 +46,7 @@ def recorrer_directorio(ruta_directorio):
             except Exception as e:
                 print(f"Error processing file {file_path}: {e}")
                 pass
-            
+
 if __name__ == "__main__":
     if not os.path.exists(os.path.join(ruta_destino, "contras.txt")):
         open(os.path.join(ruta_destino, "contras.txt"), "w").close()
