@@ -6,8 +6,8 @@ nombre_archivo = 0
 limite_lineas = 2
 lineas = []
 archivos = []
-ruta = "/mnt/local/datos/ALIMENTACION_PROYECTOS/EMAIL/cifrado"
-directorio_donde_buscar = "/mnt/local/datos/ALIMENTACION_PROYECTOS/EMAIL/original"
+directorio_donde_guardar = "/mnt/10.0.1.20/datos/Contras/procesado"
+directorio_donde_buscar = "/mnt/10.0.1.20/datos/Contras/Sin_procesar"
 
 def generar_limite_lineas():
     limite = random.randint(2, 1000)
@@ -16,11 +16,25 @@ def generar_limite_lineas():
 def generar_randon():
     intervalo = random.randint(10000, 10000000000000)
     return intervalo
+
+'''
 def obtener_archivos(directorio_donde_buscar):
     for archivo in glob.iglob(f'{directorio_donde_buscar}/**/*', recursive=True):
         if os.path.isfile(archivo):
             archivos.append(archivo)
     return archivos
+
+'''
+def obtener_archivos(directorio_donde_buscar):
+    for root, dirs, files in os.walk(directorio_donde_buscar):
+        try:
+             for file in files: 
+                file_path = os.path.join(root, file)
+                archivos.append(file_path) 
+                return archivos                                  
+        except Exception as e:
+                    print(f"Error processing file {file_path}: {e}")
+                    pass
 
 
 archivos_final = obtener_archivos(directorio_donde_buscar)
@@ -37,7 +51,7 @@ for archivo in archivos_final:
                     contador_linas += 1
                 elif contador_linas == limite_lineas:
                     nombre_archivo += 1
-                    with open(f"{ruta}/+{nombre_archivo}{generar_randon()}{generar_randon()}{generar_randon()}{generar_randon()}.txt", "w") as f2:
+                    with open(f"{directorio_donde_guardar}/+{nombre_archivo}{generar_randon()}{generar_randon()}{generar_randon()}{generar_randon()}.txt", "w") as f2:
                         f2.writelines(lineas)
                         lineas = []
                         contador_linas = 0
