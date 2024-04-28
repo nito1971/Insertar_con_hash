@@ -37,6 +37,7 @@ def menu():
                 encontrar_texto(origen_datos,cadena)
                 for linea in encontrar_texto(origen_datos, cadena):
                     print(linea)
+                lista_cadenas_encontradas.clear()
             elif opcion == "2":
                 print("\nSaliendo...")
                 break
