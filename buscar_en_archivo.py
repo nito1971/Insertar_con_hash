@@ -5,11 +5,14 @@ lista_cadenas_encontradas = []
 def encontrar_texto(archivo, texto):
     
     with open(archivo, "r", encoding="latin1") as f:
-        for linea in f:
-            if texto in linea:
-                lista_cadenas_encontradas.append(linea)
-            else:
-                continue
+        try:
+            for linea in f:
+                if texto in linea:
+                    lista_cadenas_encontradas.append(linea)
+                else:
+                    continue
+        except Exception as e:
+            print(e)
     with open("resultado.txt", "a+", encoding="latin1") as f:
         for linea in lista_cadenas_encontradas:
             f.write(linea)
