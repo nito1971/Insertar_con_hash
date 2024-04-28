@@ -10,7 +10,7 @@ directorio_donde_guardar = "/mnt/10.0.1.20/datos/Contras/procesado"
 directorio_donde_buscar = "/mnt/10.0.1.20/datos/Contras/Sin_procesar"
 
 def generar_limite_lineas():
-    limite = random.randint(2, 1000)
+    limite = random.randint(2, 100)
     return limite
 
 def generar_randon():
