@@ -5,7 +5,6 @@ El archivo de salida es un archivo txt.
 '''
 
 import os
-import hashlib
 
 ## Define the origin directory and the destination directory for writing output files.
 ruta_origen = "/mnt/local/datos/Contras/partido"
@@ -41,7 +40,7 @@ def recorrer_directorio(ruta_directorio):
                                 if line not in contras_ya_vistas:
                                     contras_ya_vistas.append(line)
                                     contras_file.write(line)
-                                    print(line)  
+                                    #print(line)  
                                 else:
                                     print(f"{line} ya existe")                                                            
                         os.remove(file_path)           
