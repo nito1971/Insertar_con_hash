@@ -8,8 +8,8 @@ import os
 import hashlib
 
 ## Define the origin directory and the destination directory for writing output files.
-ruta_origen = "/mnt/10.0.1.20/datos/Contras/TXT"
-ruta_destino = "/mnt/10.0.1.20/datos/Contras/terminado"
+ruta_origen = "/mnt/local/datos/Contras/partido"
+ruta_destino = "/mnt/local/datos/Contras/listo"
 
 ## Define a list of file extensions to exclude from processing
 extensiones_excluidas = ["sql", "xlxs", "docx", "doc", "html", "rar"]

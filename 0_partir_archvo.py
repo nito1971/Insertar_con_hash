@@ -6,8 +6,8 @@ nombre_archivo = 0
 limite_lineas = 2
 lineas = []
 archivos = []
-directorio_donde_guardar = "/mnt/10.0.1.20/datos/Contras/listo"
-directorio_donde_buscar = "/mnt/10.0.1.20/datos/Contras/procesado"
+directorio_donde_guardar = "/mnt/local/datos/Contras/partido"
+directorio_donde_buscar = "/mnt/local/datos/Contras/TXT"
 
 def generar_limite_lineas():
     limite = random.randint(1999, 2000)
