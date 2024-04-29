@@ -42,8 +42,9 @@ def recorrer_directorio(ruta_directorio):
                                     contras_file.write(line)
                                     #print(line)  
                                 else:
-                                    print(f"{line} ya existe")                                                            
-                        os.remove(file_path)           
+                                    print(f"{line} ya existe")
+                        if os.path.exists(file_path):                                                            
+                            os.remove(file_path)           
             except Exception as e:
                 print(f"Error processing file {file_path}: {e}")
                 pass
