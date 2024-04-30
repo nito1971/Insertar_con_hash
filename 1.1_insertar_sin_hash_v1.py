@@ -5,6 +5,7 @@ El archivo de salida es un archivo txt.
 '''
 
 import os
+import time
 
 ## Define the origin directory and the destination directory for writing output files.
 ruta_origen = "/mnt/local/datos/Contras/partido"
@@ -35,25 +36,34 @@ def recorrer_directorio(ruta_directorio):
                 for file in files:
                     if not file.endswith(tuple(extensiones_excluidas)):
                         file_path = os.path.join(root, file)
+                        incio = time.time()
                         with open(file_path, "r", encoding="latin1") as archivo:                            
                             for line in archivo: 
-                                if line not in contras_ya_vistas:
-                                    contras_ya_vistas.append(line)
+                                if line.split("/n") not in contras_ya_vistas:
+                                    line = line.replace("\n", "")
+                                    contras_ya_vistas.append(line)                                
+                                    #print(line
                                     contras_file.write(line)
                                     #print(line)  
                                 else:
                                     print(f"{line} ya existe")
                         if os.path.exists(file_path):                                                            
-                            os.remove(file_path)           
+                            os.remove(file_path) 
+                            fin = time.time()
+                            print(f"Archivo {file_path} eliminado")  
+                            tiempo = fin - incio
+                            print(f"Tiempo de ejecucion: {tiempo} segundos")        
             except Exception as e:
                 print(f"Error processing file {file_path}: {e}")
                 pass
-def main():
-    if not os.path.exists(os.path.join(ruta_destino, "contras.txt")):
-        open(os.path.join(ruta_destino, "contras.txt"), "w").close()
-        leer_archivo_contras()
-        recorrer_directorio(ruta_origen)
-        print("Proceso terminado")
+   
 
 if __name__ == "__main__":
-    main()
+    if not os.path.exists(os.path.join(ruta_destino, "contras.txt")):
+        open(os.path.join(ruta_destino, "contras.txt"), "w").close()
+    print("Leyendo archivo contras.txt")
+    leer_archivo_contras()
+    print("Archivo leido")
+    print("Procesando directorio")    
+    recorrer_directorio(ruta_origen)
+    print("Proceso terminado")

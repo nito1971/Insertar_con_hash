@@ -69,8 +69,8 @@ def recorrer_directorio(ruta_directorio):
                 print(f"Error processing file {file_path}: {e}")
                 pass
 if __name__ == "__main__":
-    if not os.path.exists(os.path.join(ruta_destino, "contras.txt")):
-        open(os.path.join(ruta_destino, "contras.txt"), "w").close()
+    if not os.path.exists(os.path.join(ruta_destino, "contras_1.txt")):
+        open(os.path.join(ruta_destino, "contras_1.txt"), "w").close()
     leer_archivo_contras()
     recorrer_directorio(ruta_origen)
     print("Proceso terminado")
