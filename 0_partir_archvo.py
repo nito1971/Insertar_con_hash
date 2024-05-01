@@ -1,24 +1,43 @@
 import os
 import shutil
 
-# Rutas de las carpetas origen y destino
-origin_dir = '/mnt/local/datos/Contras/archivos_no_partidos'
-partidos_dir = '/mnt/local/datos/Contras/archivos_partidos'
+'''
+Este script utiliza la biblioteca os para interactuar c
+on el sistema de archivos y la biblioteca shutil para copiar archivos. 
+a función split_file toma un archivo como entrada y
+lo divide en partes de 1000 líneas, guardando cada parte en un archivo
+separado en la ruta especificada.
 
-# Tamaño de cada archivo (1 MB)
-chunk_size = 1024
+Luego, el script recorre la carpeta principal y llama a la 
+función split_file para cada archivo que encuentra. 
+Cada archivo partido se almacena en la ruta específica
+con la extensión .txt.
+'''
 
-# Recorrer directorio origen y dividir archivos en chunk_size
-for file in os.listdir(origin_dir):
-    filepath = os.path.join(origin_dir, file)
-    
-    if os.path.isfile(filepath):  # Si es un archivo
-        with open(filepath, 'rb') as f:
-            file_contents = f.read()
-        
-        chunks = [file_contents[i:i + chunk_size] for i in range(0, len(file_contents), chunk_size)]
-        
-        for i, chunk in enumerate(chunks):
-            filename = f"{file}.{i+1}.bin"
-            with open(os.path.join(partidos_dir, filename), 'wb') as f:
-                f.write(chunk)
+# Ruta principal
+root_dir = "/mnt/local/datos/Contras/archivos_no_partidos"
+
+# Ruta donde se almacenarán los archivos partidos
+parted_dir = "/mnt/local/datos/Contras/archivos_partidos"
+
+# Función para dividir un archivo en partes de 1000 líneas
+def split_file(file_path, output_dir):
+    with open(file_path, 'r', encoding="latin1") as file:
+        lines = [line.strip() for line in file.readlines()]
+        num_parts = -(-len(lines) // 1000)
+        part_size = len(lines) // num_parts
+
+        for i in range(num_parts):
+            start_idx = i * part_size
+            end_idx = (i + 1) * part_size
+            if i == num_parts - 1:
+                end_idx = len(lines)
+
+            with open(os.path.join(output_dir, f"part-{i+1}.txt"), 'a+', encoding="latin1") as part_file:
+                part_file.write('\n'.join(lines[start_idx:end_idx]))
+
+# Recorrer la carpeta y dividir los archivos
+for file in os.listdir(root_dir):
+    file_path = os.path.join(root_dir, file)
+    if os.path.isfile(file_path):
+        split_file(file_path, parted_dir)
