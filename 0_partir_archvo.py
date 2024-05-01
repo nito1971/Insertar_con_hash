@@ -10,7 +10,7 @@ directorio_donde_guardar = "/mnt/local/datos/Contras/partido"
 directorio_donde_buscar = "/mnt/local/datos/Contras/TXT"
 
 def generar_limite_lineas():
-    limite = random.randint(1999, 2000)
+    limite = random.randint(99, 100)
     return limite
 
 def generar_randon():

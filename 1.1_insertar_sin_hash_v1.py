@@ -40,7 +40,7 @@ def recorrer_directorio(ruta_directorio):
                         with open(file_path, "r", encoding="latin1") as archivo:                            
                             for line in archivo: 
                                 if line.split("/n") not in contras_ya_vistas:
-                                    line = line.replace("\n", "")
+                                    line = line
                                     contras_ya_vistas.append(line)                                
                                     #print(line
                                     contras_file.write(line)
