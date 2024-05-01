@@ -1,86 +1,24 @@
 import os
-import random
-import glob
-contador_linas = 0
-nombre_archivo = 0
-limite_lineas = 2
-lineas = []
-archivos = []
-directorio_donde_guardar = "/mnt/local/datos/Contras/partido"
-directorio_donde_buscar = "/mnt/local/datos/Contras/TXT"
+import shutil
 
-def generar_limite_lineas():
-    limite = random.randint(99, 100)
-    return limite
+# Rutas de las carpetas origen y destino
+origin_dir = '/mnt/local/datos/Contras/archivos_no_partidos'
+partidos_dir = '/mnt/local/datos/Contras/archivos_partidos'
 
-def generar_randon():
-    intervalo = random.randint(10000, 10000000000000)
-    return intervalo
+# Tamaño de cada archivo (1 MB)
+chunk_size = 10**6 * 1024
 
-'''
-def obtener_archivos(directorio_donde_buscar):
-    for archivo in glob.iglob(f'{directorio_donde_buscar}/**/*', recursive=True):
-        if os.path.isfile(archivo):
-            archivos.append(archivo)
-    return archivos
-
-'''
-def obtener_archivos(directorio_donde_buscar):
-    for root, dirs, files in os.walk(directorio_donde_buscar):
-        try:
-             for file in files: 
-                file_path = os.path.join(root, file)
-                archivos.append(file_path) 
-                return archivos                                  
-        except Exception as e:
-                    print(f"Error processing file {file_path}: {e}")
-                    pass
-
-
-archivos_final = obtener_archivos(directorio_donde_buscar)
-
-
-
-for archivo in archivos_final:
-    limite_lineas = generar_limite_lineas()
-            
-    with open(archivo, encoding="latin-1") as f:
-        try:
-            for linea in f:
-                if contador_linas < limite_lineas:
-                        lineas.append(linea)
-                        contador_linas += 1
-                elif contador_linas == limite_lineas:
-                    nombre_archivo += 1
-                    with open(f"{directorio_donde_guardar}/+{nombre_archivo}{generar_randon()}{generar_randon()}{generar_randon()}{generar_randon()}{generar_randon()}{generar_randon()}.txt", "w") as f2:
-                            f2.writelines(lineas)
-                            lineas = []
-                            contador_linas = 0
-        except Exception as e:
-            print(e)
-            pass    
-
-
-
-
-
-
-
-                
-            
-'''
-
-with open("./original/j", encoding="latin-1") as f:
-    for linea in f:
-        if contador_linas < limite_lineas:
-            lineas.append(linea)
-            contador_linas += 1
-        elif contador_linas == limite_lineas:
-            nombre_archivo += 1
-            with open(f"./partido/j_{nombre_archivo}.txt", "w") as f2:
-                f2.writelines(lineas)
-                lineas = []
-                contador_linas = 0
-
-'''
-
+# Recorrer directorio origen y dividir archivos en chunk_size
+for file in os.listdir(origin_dir):
+    filepath = os.path.join(origin_dir, file)
+    
+    if os.path.isfile(filepath):  # Si es un archivo
+        with open(filepath, 'rb') as f:
+            file_contents = f.read()
+        
+        chunks = [file_contents[i:i + chunk_size] for i in range(0, len(file_contents), chunk_size)]
+        
+        for i, chunk in enumerate(chunks):
+            filename = f"{file}.{i+1}.bin"
+            with open(os.path.join(partidos_dir, filename), 'wb') as f:
+                f.write(chunk)
