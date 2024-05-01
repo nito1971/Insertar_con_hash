@@ -36,6 +36,7 @@ for archivo in archivos_final:
                         f2.writelines(lineas)
                         lineas = []
                         contador_linas = 0
+                        contador_archivos += 1
     except Exception as e:
         print(e)
         pass
