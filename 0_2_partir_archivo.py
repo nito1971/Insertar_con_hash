@@ -1,5 +1,4 @@
 import os
-import random
 import glob
 contador_archivos = 0
 contador_linas = 0
