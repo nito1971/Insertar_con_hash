@@ -119,7 +119,7 @@ while(numero_archivos() > 0):
     print("#" *30)
     print(f"Quedan {numero_archivos()} archivos aún")
     print("#" *30)
-    for i in range(1):
+    for i in range(3):
         hilo = threading.Thread(target=inicio, args=(i,))
         hilos.append(hilo)
 
