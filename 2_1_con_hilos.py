@@ -7,7 +7,7 @@ import pathlib
 import mysql.connector
 from mysql.connector import Error
 
-ruta = "/mnt/local/datos/Contras/listo"
+ruta = "/mnt/local/datos/ALIMENTACION_PROYECTOS/EMAIL/partido"
 
 def numero_archivos():
     initial_count = 0
