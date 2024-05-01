@@ -58,12 +58,22 @@ def recorrer_directorio(ruta_directorio):
                 pass
    
 
+# Main Script
 if __name__ == "__main__":
-    if not os.path.exists(os.path.join(ruta_destino, "contras.txt")):
-        open(os.path.join(ruta_destino, "contras.txt"), "w").close()
+    # Create or open "contras.txt" file if it doesn't exist
+    contras_file_path = os.path.join(ruta_destino, "contras.txt")
+    if not os.path.exists(contras_file_path):
+        with open(contras_file_path, 'w') as f:
+            pass
+    
+    # Log the start of processing
     print("Leyendo archivo contras.txt")
+    
+    # Read the file and process it
     leer_archivo_contras()
     print("Archivo leido")
-    print("Procesando directorio")    
+    
+    # Start processing the directory
+    print("Procesando directorio")
     recorrer_directorio(ruta_origen)
     print("Proceso terminado")
