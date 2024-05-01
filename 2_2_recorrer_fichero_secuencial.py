@@ -11,8 +11,10 @@ def insert_mongo(_id, datos):
 
 def recorre_directorio(directorio):
     for root, dirs, files in os.walk(directorio):
+        print(f"Directorio actual: {root}")
         for file in files:
             ruta =  os.path.join(root, file)
+            print(ruta)
             inicio = time.time()
             try:
                 with open(ruta, "r") as f:
