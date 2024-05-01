@@ -6,7 +6,7 @@ origin_dir = '/mnt/local/datos/Contras/archivos_no_partidos'
 partidos_dir = '/mnt/local/datos/Contras/archivos_partidos'
 
 # Tamaño de cada archivo (1 MB)
-chunk_size = 10**6 * 1024
+chunk_size = 1024
 
 # Recorrer directorio origen y dividir archivos en chunk_size
 for file in os.listdir(origin_dir):

@@ -8,7 +8,7 @@ import os
 import time
 
 ## Define the origin directory and the destination directory for writing output files.
-ruta_origen = "/mnt/local/datos/Contras/partido"
+ruta_origen = "/mnt/local/datos/Contras/archivos_partidos"
 ruta_destino = "/mnt/local/datos/Contras/listo"
 
 ## Define a list of file extensions to exclude from processing
