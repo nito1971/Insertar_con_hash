@@ -17,7 +17,7 @@ contras_ya_vistas  = []  # Initialize an empty list for storing hashes
 
 def leer_archivo_contras():
     """
-    Lee los hash desde archivo y los añade a la lista de los ya agregados.
+    Lee las lineas desde archivo y los añade a la lista de las ya agregados.
 
     """
     with open(os.path.join(ruta_destino, "contras.txt"), "r") as archivo:
