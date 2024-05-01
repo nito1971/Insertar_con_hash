@@ -103,7 +103,7 @@ def inicio(hilo):
                 final = time.time()
                 tiempo_total = (final - inicio)
                 print(f"Tiempo total de ejecución: {tiempo_total} segundos para el hilo {hilo}")
-                #print(f"Quedan {numero_archivos()} archivos aún")
+                print(f"Quedan {numero_archivos()} archivos aún")
     except Exception as e:
         print(e)
         return False     
