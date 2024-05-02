@@ -4,10 +4,14 @@ import time
 ruta_directorio = "/mnt/local/datos/Contras/archivos_partidos"
 
 def insert_mongo(_id, datos):
-    client = pymongo.MongoClient("localhost", 27019)
-    db = client._constructor_args
-    collection = db.tcontras
-    collection.insert_one({"_id": _id, "datos": datos})
+    try:
+        client = pymongo.MongoClient("localhost", 27019)
+        db = client.contras
+        collection = db.contras
+        collection.insert_one({"_id": _id, "datos": datos})
+    except Exception as e:
+        print(e)
+        pass
 
 def recorre_directorio(directorio):
     for root, dirs, files in os.walk(directorio):
